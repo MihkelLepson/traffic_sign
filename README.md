@@ -1,2 +1,2 @@
-# traffic_sign
-Traffic sign detection
+# Traffic sign detection
+Intelligent Transportation Systems project.
