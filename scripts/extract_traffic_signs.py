@@ -3,6 +3,7 @@ import cv2
 import sys
 import pandas as pd
 import os
+import numpy as np
 
 #This scripts extracts traffic signs and their labels from
 #http://www.cvl.isy.liu.se/research/datasets/traffic-signs-dataset/
@@ -57,7 +58,7 @@ with open(input_path + 'labels.txt') as f:
 
 data = np.array([label_visibility],[label_type],[label_sign]])
 data = np.transpose(data)
-df = pd.DataFrame(data=data], columns=["visibility", "type", "sign"])
+df = pd.DataFrame(data=data, columns=["visibility", "type", "sign"])
 
 if not os.path.exists(output_path):
     os.makedirs(output_path)
