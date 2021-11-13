@@ -55,7 +55,9 @@ virtualenv venv_example (seda ainult esimene kord)
 source venv_example/bin/activate
 ```
 
-Nüüd olete te nö oma keskonnas ja saate kõike läbi CLI allalaadida.
+Nüüd olete te nö oma keskonnas ja saate kõike läbi CLI allalaadida
+ntks pythonile (python3.6 -m pip install <package-name>
+).
 
 Selleks, et nüüd jupyter tööle panna jooksutage
 
