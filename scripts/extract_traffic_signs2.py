@@ -19,7 +19,7 @@ images_files = [f for f in listdir(input_path + 'dataset')]
 images = {}
 
 for image_file in images_files:
-    images[image_file] = (cv2.imread(input_path + image_file))
+    images[image_file] = (cv2.imread(input_path + 'dataset/' + image_file))
     
 labels = []
 imgs = []
