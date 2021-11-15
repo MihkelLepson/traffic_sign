@@ -1,5 +1,5 @@
 ROCKETI KÄSUD:
-Esiteks tuleb ssh’da rocketisse - oma kodukataloogi. Jooksuta (ainult esimesel korral):
+Esiteks tuleb ssh’da rocketisse - oma kodukataloogi. Jooksuta
 ```
 $ module load python-3.7.1
 $ ipython profile create MPI
@@ -12,7 +12,7 @@ Siis loo fail jupyter.sbatch: (ainult esimesel korral)
 ```
 touch jupyter.sbatch
 ```
-Ja täida see järgneva infoga (kasuta nano või vim vms): (ainult esimesel korral)
+Ja täida see järgneva infoga (kasuta nano või vim vms):
 ```
 
 #!/bin/bash
