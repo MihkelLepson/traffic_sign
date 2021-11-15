@@ -7,12 +7,12 @@ $ echo "c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher'" >>/gp
 
 ```
 
-Siis loo fail jupyter.sbatch:
+Siis loo fail jupyter.sbatch: (ainult esimesel korral)
 
 ```
 touch jupyter.sbatch
 ```
-Ja täida see järgneva infoga (kasuta nano või vim vms):
+Ja täida see järgneva infoga (kasuta nano või vim vms): (ainult esimesel korral)
 ```
 
 #!/bin/bash
@@ -29,10 +29,10 @@ module load openmpi-2.1.0 #
 profile=MPI
 
 ### Need to call only once in the beginning
-echo "Creating profile ${profile}"
-ipython profile create ${profile}
-echo "c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher'" >> /gpfs/hpchome/${USER}/.ipython/profile_${profile}/ipcluster_config.py
-cat /gpfs/hpchome/${USER}/.ipython/profile_${profile}/ipcluster_config.py
+# echo "Creating profile ${profile}"
+# ipython profile create ${profile}
+# echo "c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher'" >> /gpfs/hpchome/${USER}/.ipython/profile_${profile}/ipcluster_config.py
+# cat /gpfs/hpchome/${USER}/.ipython/profile_${profile}/ipcluster_config.py
 
 echo "Launching controller"
 ipcontroller --ip="*" --profile=${profile} --log-to-file &
@@ -47,7 +47,7 @@ sleep 5
 
 
 ```
-Nüüd jooksuta käsud
+Nüüd jooksuta käsud:
 
 ```
 module load python/3.6.3/virtenv
@@ -55,14 +55,7 @@ virtualenv venv_example (seda ainult esimene kord)
 source venv_example/bin/activate
 ```
 
-Nüüd olete te nö oma keskonnas ja saate kõike läbi CLI allalaadida. Nüüd tuleks ka järgnevatel kordadel kasutamise jaoks jupyter.sbatch failis väljakommenteerida need read:
-
-```
-echo "Creating profile ${profile}"
-ipython profile create ${profile}
-echo "c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher'" >> /gpfs/hpchome/${USER}/.ipython/profile_${profile}/ipcluster_config.py
-cat /gpfs/hpchome/${USER}/.ipython/profile_${profile}/ipcluster_config.py
-```
+Nüüd olete te nö oma keskonnas ja saate kõike läbi CLI allalaadida.
 
 Selleks, et nüüd jupyter tööle panna jooksutage
 
