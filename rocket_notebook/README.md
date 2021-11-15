@@ -52,7 +52,7 @@ Nüüd jooksuta käsud:
 ```
 module load python/3.6.3/virtenv
 virtualenv venv_example (seda ainult esimene kord)
-pip install ipykernel (ainult esimene kord)
+pip install ipykernel (ainult esimene kord) (mby peab lisama enne ipykernelit --user)
 python -m ipykernel install --user --name=venv_example (ainult esimene kord)
 source venv_example/bin/activate
 ```
