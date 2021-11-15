@@ -1,7 +1,7 @@
 ROCKETI KÄSUD:
 Esiteks tuleb ssh’da rocketisse - oma kodukataloogi. Jooksuta
 ```
-$ module load python-3.7.1
+$ module load python-3.6.3
 $ ipython profile create MPI
 $ echo "c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher'" >>/gpfs/space/home/${USER}/.ipython/profile_MPI/ipcluster_config.py
 
@@ -52,6 +52,8 @@ Nüüd jooksuta käsud:
 ```
 module load python/3.6.3/virtenv
 virtualenv venv_example (seda ainult esimene kord)
+pip install ipykernel (ainult esimene kord)
+python -m ipykernel install --user --name=venv_example (ainult esimene kord)
 source venv_example/bin/activate
 ```
 
@@ -68,5 +70,11 @@ Teile tekib vastava töö id’ga fail, mis loobib alguses erroreid, kuid siis t
 ```
 cat slurm-<id>.out
 ```
+Tekita kõin notbookid venv_example kerneliga! 
+Kui tahad python'i package'd allalaadida, siis 
+```
+ pip3.6 install <package-name>
+```
+
 NB! Ole ka VPN eduroamiga sees.
 VOILA!
