@@ -104,8 +104,10 @@ def get_labels(i):
         return "MANDATORY", "NO_OVERTAKING_END"
     elif i == 42:
         return "MANDATORY", "NO_OVERTAKING_HEAVY_END"
-    else:
+    elif i == 43:
         return "MANDATORY", "NO_OVERTAKING_HEAVY_END"
+    else:
+        return "MISC", "MISC"
 		
 		
 imgs = []
