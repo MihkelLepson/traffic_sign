@@ -9,11 +9,12 @@ import csv
 #This scripts extracts traffic signs and their labels from
 #https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/published-archive.html
 #The file to download is GTSRB_Final_Training_Images.zip or GTSRB_Final_Test_Images.zip
-#To use on training, the third argument when launching scripts must be "train".
+#To use on training, the fourth argument when launching scripts must be "train".
 
 #input_path should lead to folder, where are subfolders by image classes: 00000, 00001, 00002, ...
 input_path = sys.argv[0]
 output_path = sys.argv[1]
+img_size = int(sys.argv[2])
 
 #The annotation file contains only class_id. There's no file for class_id, meaning if we want to merge different
 #datasets, we have to manually label them
@@ -116,7 +117,7 @@ label_sign = []
 
 for i in range(43):
     images = {}
-	if sys.argv[2] == "train":
+	if sys.argv[3] == "train":
 		if i > 10:
 			folder = '000' + str(i) + '/'
 		else:
@@ -136,7 +137,7 @@ for i in range(43):
                     x = line.split(";")
                     img = images[x[0]][int(x[4]):int(x[6]),int(x[3]):int(x[5]),:]
                     lbl1, lbl2 = get_labels(int(x[7]))
-                    imgs.append(img)
+                    imgs.append(cv2.resize(img, [img_size,img_size])
                     label_type.append(lbl1)
                     label_sign.append(lbl2)
                     line = f.readline()

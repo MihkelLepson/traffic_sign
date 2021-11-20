@@ -12,6 +12,7 @@ import numpy as np
 #Input folder for data. Make sure, that only road images are in the folder
 input_path = sys.argv[0]
 output_path = sys.argv[1]
+img_size = int(sys.argv[2])
 
 #Read in image files
 images_files = [f for f in listdir(input_path + 'dataset')]
@@ -34,7 +35,7 @@ for image_file in images_files:
             outer.append(int(re.findall(r'[0-9]?[0-9]?[0-9]', coord)[0]))
         for i in range(int(len(x)/4)):
             img = images[image_file][outer[i*4+1]:outer[i*4+3],outer[i*4]:outer[i*4+2],:]
-            imgs.append(img)
+            imgs.append(cv2.resize(img, [img_size,img_size])
             labels.append(names[i][1].strip("<name>").strip("</name>"))
 
 data = np.array(labels)
