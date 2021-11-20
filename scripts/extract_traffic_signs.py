@@ -44,7 +44,13 @@ with open('labels.txt') as f:
             img = images[name][int(float(coord1[1])):int(float(coord2[1])),int(float(coord1[0])):int(float(coord2[0])),:]
             imgs.append(img)
             label_visibility.append(splitted[0])
-            label_type.append(splitted[5])
+            if splitted[6] == "PRIORITY_ROAD": 
+                label_type.append("PRIORITY")
+            elif splitted[6] == "PEDESTRIAN_CROSSING":
+                label_type.append("SPECIAL_REGULATIONS")
+            else:
+                label_type.append(splitted[5])
+            
             label_sign.append(splitted[6])
         
         line = f.readline()
