@@ -18,7 +18,7 @@ def get_labels(name):
     if name == "trafficlight":
         return "TRAFFICLIGHT", "TRAFFICLIGHT"
     if name == "speedlimit":
-        return "PROHIBITORY", "TRAFFICLIGHT"
+        return "PROHIBITORY", "?_SIGN"
     if name == "crosswalk":
         return "SPECIAL_REGULATIONS", "PEDESTRIAN_CROSSING"
     if name == "stop":
