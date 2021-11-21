@@ -43,7 +43,7 @@ with open('labels.txt') as f:
             coord1 = (splitted[3],splitted[4])
             coord2 = (splitted[1],splitted[2])
             img = images[name][int(float(coord1[1])):int(float(coord2[1])),int(float(coord1[0])):int(float(coord2[0])),:]
-            imgs.append(cv2.resize(img, [img_size,img_size])
+            imgs.append(cv2.resize(img, [img_size,img_size]))
             label_visibility.append(splitted[0])
             if splitted[6] == "PRIORITY_ROAD": 
                 label_type.append("PRIORITY")
