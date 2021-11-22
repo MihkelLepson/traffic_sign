@@ -147,12 +147,16 @@ data = np.array([label_type,label_sign])
 data = np.transpose(data)
 df = pd.DataFrame(data=data, columns=["type", "sign"])
 
+label_path = []
+
 if not os.path.exists(output_path):
     os.makedirs(output_path)
-
-df.to_pickle(output_path + 'df.pkl')
 
 for i in range(len(imgs)):
     if not os.path.exists(output_path):
         os.makedirs(output_path + 'dataset/')
     cv2.imwrite(output_path + 'dataset/' + 'img' + str(i) + '.jpg' ,imgs[i])
+    label_path.append(output_path + 'dataset/' + 'img' + str(i) + '.jpg')
+    
+df['img_path'] = label_path
+df.to_pickle(output_path + 'df.pkl')
