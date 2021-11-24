@@ -130,19 +130,19 @@ for i in range(43):
         if image_file[-3:] != 'csv':
             images[image_file] = (cv2.imread(input_path0 + folder + image_file))
 
-with open(input_path0 + folder + image_file) as f:
-    f.readline()  #First line is column names
-    line = f.readline()
-    while line != '':
-        x = line.split(";")
-        
-        img = images[x[0]][int(x[4]):int(x[6]),int(x[3]):int(x[5]),:]
-        lbl1, lbl2 = get_labels(int(x[7]))
-        imgs.append(cv2.resize(img, [img_size,img_size]))
-        label_type.append(lbl1)
-        label_sign.append(lbl2)
+    with open(input_path0 + folder + 'GT-' + folder.replace('/','') + '.csv') as f:
+        f.readline()  #First line is column names
         line = f.readline()
-    f.close()
+        while line != '':
+            x = line.split(";")
+
+            img = images[x[0]][int(x[4]):int(x[6]),int(x[3]):int(x[5]),:]
+            lbl1, lbl2 = get_labels(int(x[7]))
+            imgs.append(cv2.resize(img, [img_size,img_size]))
+            label_type.append(lbl1)
+            label_sign.append(lbl2)
+            line = f.readline()
+        f.close()
 				
 data = np.array([label_type,label_sign])
 data = np.transpose(data)
