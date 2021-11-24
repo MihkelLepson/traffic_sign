@@ -10,6 +10,13 @@ import csv
 #https://btsd.ethz.ch/shareddata/
 #The file to download is BelgiumTSC_Training (171.3MBytes)
 
+#The images 
+#'00006/00147_00000.ppm'
+#'00006/00147_00001.ppm'
+#'00006/00147_00002.ppm'
+#Are in wrong folder and their labels are also wrong.
+#They should be in folder 00005 with classid 5.
+
 #input_path should lead to folder, where are subfolders by image classes: 00000, 00001, 00002, ...
 input_path0 = sys.argv[0]
 output_path = sys.argv[1]
@@ -82,7 +89,7 @@ def get_labels(i):
     elif i == 31:
         return "PROHIBITORY", "NO_OVERTAKING"
     elif i == 32:
-        return "PROHIBITORY", "?_SIGN"
+        return "PROHIBITORY", "?_SIGN" #speedsigns weren't labeled differently
     elif i == 33:
         return "MANDATORY", "SHARED_PEDESTRIAN_AND_CYCLE_PATH"
     elif i == 34:
@@ -140,8 +147,6 @@ def get_labels(i):
     elif i == 60:
         return "PRIORITY", "PRIORITY_ROAD_END"
     elif i == 61:
-        return "PRIORITY", "PRIORITY_ROAD"
-    elif i == 62:
         return "PRIORITY", "PRIORITY_ROAD"
     else:
         return "MISC", "MISC"
