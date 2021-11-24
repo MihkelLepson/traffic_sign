@@ -177,7 +177,7 @@ for i in range(43):
         while line != '':
             x = line.split(";")
 
-            img = images[x[0]][int(x[4]):int(x[6]),int(x[3]):int(x[5]),:]
+            img = images[x[0]][int(x[3]):int(x[5]),int(x[4]):int(x[6]),:]
             lbl1, lbl2 = get_labels(int(x[7]))
             imgs.append(cv2.resize(img, [img_size,img_size]))
             label_type.append(lbl1)
