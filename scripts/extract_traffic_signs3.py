@@ -12,7 +12,7 @@ import csv
 #To use on training, the fourth argument when launching scripts must be "train".
 
 #input_path should lead to folder, where are subfolders by image classes: 00000, 00001, 00002, ...
-input_path = sys.argv[0]
+input_path0 = sys.argv[0]
 output_path = sys.argv[1]
 img_size = int(sys.argv[2])
 
@@ -117,42 +117,47 @@ label_sign = []
 
 for i in range(43):
     images = {}
-	if sys.argv[3] == "train":
-		if i > 10:
-			folder = '000' + str(i) + '/'
-		else:
-			folder = '0000' + str(i) + '/'
-		input_path = args[0] + folder
+    if "train" == "train": # xd
+        if i >= 10:
+            folder = '000' + str(i) + '/'
+        else:
+            folder = '0000' + str(i) + '/'
+        input_path = input_path0 + folder
     else:
-		input_path = args[0]
-    images_files = [f for f in listdir(input_path )]
+        input_path = input_path0
+    images_files = [f for f in listdir(input_path0 + folder)]
     for image_file in images_files:
         if image_file[-3:] != 'csv':
-            images[image_file] = (cv2.imread(input_path + image_file))
-        else: #The last file in folder is csv file.
-            with open(input_path + image_file) as f:
-                f.readline()  #First line is column names
-                line = f.readline()
-                while line != '':
-                    x = line.split(";")
-                    img = images[x[0]][int(x[4]):int(x[6]),int(x[3]):int(x[5]),:]
-                    lbl1, lbl2 = get_labels(int(x[7]))
-                    imgs.append(cv2.resize(img, [img_size,img_size])
-                    label_type.append(lbl1)
-                    label_sign.append(lbl2)
-                    line = f.readline()
-                f.close()
+            images[image_file] = (cv2.imread(input_path0 + folder + image_file))
+
+    with open(input_path0 + folder + 'GT-' + folder.replace('/','') + '.csv') as f:
+        f.readline()  #First line is column names
+        line = f.readline()
+        while line != '':
+            x = line.split(";")
+
+            img = images[x[0]][int(x[4]):int(x[6]),int(x[3]):int(x[5]),:]
+            lbl1, lbl2 = get_labels(int(x[7]))
+            imgs.append(cv2.resize(img, [img_size,img_size]))
+            label_type.append(lbl1)
+            label_sign.append(lbl2)
+            line = f.readline()
+        f.close()
 				
 data = np.array([label_type,label_sign])
 data = np.transpose(data)
 df = pd.DataFrame(data=data, columns=["type", "sign"])
 
+label_path = []
+
 if not os.path.exists(output_path):
     os.makedirs(output_path)
-
-df.to_pickle(output_path + 'df.pkl')
 
 for i in range(len(imgs)):
     if not os.path.exists(output_path):
         os.makedirs(output_path + 'dataset/')
     cv2.imwrite(output_path + 'dataset/' + 'img' + str(i) + '.jpg' ,imgs[i])
+    label_path.append(output_path + 'dataset/' + 'img' + str(i) + '.jpg')
+    
+df['img_path'] = label_path
+df.to_pickle(output_path + 'df.pkl')

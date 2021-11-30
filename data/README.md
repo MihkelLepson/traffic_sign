@@ -9,3 +9,4 @@
 * https://gram.web.uah.es/research.html#tab-data
 * https://www.kaggle.com/andrewmvd/road-sign-detection
 * https://www.kaggle.com/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign?select=Train.csv
+* https://btsd.ethz.ch/shareddata/
