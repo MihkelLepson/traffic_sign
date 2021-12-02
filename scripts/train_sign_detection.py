@@ -70,9 +70,7 @@ for i in range(len(imgs)):
     cv2.imwrite(output_path1 + 'dataset/' + 'img' + str(i) + '.jpg' ,imgs[i])
 	cv2.imwrite(output_path2 + 'dataset/' + 'img' + str(i) + '.jpg' ,imgs[i])
 
-
 size = imgs[0].shape
-
 
 train_images = imgs[0:1600]
 train_labels = imgs_mask[0:1600]
@@ -80,7 +78,7 @@ test_images = imgs[1600:1827]
 test_labels = imgs_mask[1600:1827]
 
 train_dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
-test_dataset = tf.data.Dataset.from_tensor_slices((test_images, train_labels))
+test_dataset = tf.data.Dataset.from_tensor_slices((test_images, test_labels))
 
 train_batches = train_dataset.batch(64)
 test_batches = test_dataset.batch(64)
